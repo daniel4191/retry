@@ -13,3 +13,7 @@ class Post(models.Model):
     # 이걸로써, 관리자 단에서 내용을 보게 되면 작성된 텍스트로 표시된다.
     def __str__(self):
         return f"[{self.pk}] {self.title}"
+
+    def get_absolute_url(self):
+        return f"/blog/{self.pk}/"
+    
