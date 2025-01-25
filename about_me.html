@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>About me</title>
+    <link rel="stylesheet" href="./practice.css" />
+    <link
+      rel="stylesheet"
+      href="./bootstrap4/css/bootstrap.min.css"
+      type="text/css"
+    />
+    <!-- font awesome link -->
+    <script
+      src="https://kit.fontawesome.com/5d3e297a3b.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <!-- start of bootstrap4 -->
+    <nav class="navbar navbar-expand-lg primary">
+      <nav class="container">
+        <a class="navbar-brand" href="./index.html">Logo</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarNavDropdown"
+          aria-controls="navbarNavDropdown"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+          <ul class="navbar-nav">
+            <li class="nav-item active">
+              <a class="nav-link" href="./index.html"
+                >Home <span class="sr-only">(current)</span></a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="./blog_list.html">Blog</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="./about_me.html">About Me</a>
+            </li>
+            <!-- dropdown link for now blocked -->
+            <!-- <li class="nav-item dropdown">
+              <a
+                class="nav-link dropdown-toggle"
+                href="#"
+                id="navbarDropdownMenuLink"
+                role="button"
+                data-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false"
+              >
+                Dropdown link
+              </a>
+              <div
+                class="dropdown-menu"
+                aria-labelledby="navbarDropdownMenuLink"
+              >
+                <a class="dropdown-item" href="#">Action</a>
+                <a class="dropdown-item" href="#">Another action</a>
+                <a class="dropdown-item" href="#">Something else here</a>
+              </div>
+            </li> -->
+          </ul>
+
+          <!-- login button zone start-->
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+              <a href="#" class="nav-link">Log In</a>
+            </li>
+          </ul>
+           <!-- login button zone end-->
+        </div>
+      </nav>
+    </nav>
+
+    <!-- end of bootstrap4 -->
+    <div class="container">
+      <div class="row">
+        <div class="col-9">
+          <h1>About Me</h1>
+          <h2>반드시 해내고 만다.</h2>
+          <p>HTML, CSS, JS, Django로 재미있는 웹사이트 만드는 것을 좋아함.</p>
+          <a href="./index.html">첫 화면으로 가기</a>
+        </div>
+        <div class="col-3">
+          <img src="./images/image.png" class="img-fluid w-100" />
+        </div>
+      </div>
+      <div class="row my-3">
+        <div class="col-12">
+          <h2>Portfolio</h2>
+        </div>
+        <div class="col-sm col-lg-6 bg-info">
+          <img src="./images/dog.jpeg" class="img-fluid">
+        </div>
+        <div class="col-sm col-lg-3 bg-success">
+          <img src="./images/cat.webp" class="img-fluid">
+        </div>
+        <div class="col-sm col-lg-3 bg-warning">
+          <img src="./images/tree.jpg" class="img-fluid">
+        </div>
+    </div>
+
+    <!-- bootstrap Javascript -->
+    <script
+      src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+      integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+      integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js"
+      integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
