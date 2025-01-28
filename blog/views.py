@@ -1,5 +1,5 @@
-from django.shortcuts import render
-from django.views.generic import ListView
+# from django.shortcuts import render
+from django.views.generic import ListView, DetailView
 from .models import Post
 
 class PostList(ListView):
@@ -7,6 +7,8 @@ class PostList(ListView):
     ordering = "-pk"
     # template_name = "blog/index.html"
 
+class PostDetail(DetailView):
+    model = Post
 
 # Create your views here.
 # def index(request):
