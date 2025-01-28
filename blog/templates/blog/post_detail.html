@@ -44,6 +44,7 @@
         </div>
       </div>
     </nav>
+
     <!-- Page content-->
     <div class="container mt-5">
       <div class="row">
@@ -62,13 +63,25 @@
               <p>{{ post.created }}</p>
               <hr />
             </header>
+
             <!-- Preview image figure-->
+            <!-- if image in files come for entry picture  -->
+            {% if post.head_image %}
             <figure class="mb-4">
               <img
                 class="img-fluid rounded"
-                src="https://dummyimage.com/900x400/ced4da/6c757d.jpg"
-                alt="..."
+                src="{{ post.head_image.url }}"
+              alt="{{ post.title }} head image"
               />
+
+            <!-- if none image in files, bring come from lorem picture  -->
+            {% else %}
+            <img
+              class="card-img-top"
+              src="https://picsum.photos/seed/{{ post.pk }}/800/200"
+              alt="random_image"
+            />
+            {% endif %}
             </figure>
 
             <!-- Post content-->

@@ -167,15 +167,27 @@
         <!-- start of 9 ratio area -->
         <div class="col-md-8 col-lg-9">
           <h1>Blog</h1>
-          <!-- Blog post start -->
           {% for p in post_list %}
+          <!-- Blog post start -->
+
           <div class="card mb-4">
-            <a href="#!"
-              ><img
-                class="card-img-top"
-                src="{{ p.head_image.url }}"
-                alt="Card image cap"
-            /></a>
+            <!-- if image in files come for entry picture  -->
+            {% if p.head_image %}
+            <img
+              class="card-img-top"
+              src="{{ p.head_image.url }}"
+              alt="{{ p }} head image"
+            />
+
+            <!-- if none image in files, bring come from lorem picture  -->
+            {% else %}
+            <img
+              class="card-img-top"
+              src="https://picsum.photos/seed/{{ p.pk }}/800/200"
+              alt="random_image"
+            />
+            {% endif %}
+
             <div class="card-body">
               <h2 class="card-title">{{ p.title }}</h2>
               <p class="card-text">{{ p.content }}</p>
@@ -274,8 +286,11 @@
                   </ul>
                 </div>
               </div>
+              <!-- div.row -->
             </div>
+            <!-- card-body -->
           </div>
+          <!-- card mb-4 -->
           <!-- Categories end -->
         </div>
         <!-- end of 3 ratio area -->
