@@ -6,6 +6,7 @@ class Post(models.Model):
     content = models.TextField()
 
     # auto_now=True를 해주면, 추가로 입력해줄 것 없이, 해당되는 내용이 자동 등록 된다.
+    head_image = models.ImageField(upload_to="blog/%Y/%m/%d/", blank=True)
     created_at = models.DateTimeField(auto_now=True)
     updated_at = models.DateTimeField(auto_now=True)
     # author - 추후 작성 예정
