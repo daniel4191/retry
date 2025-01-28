@@ -190,7 +190,11 @@
 
             <div class="card-body">
               <h2 class="card-title">{{ p.title }}</h2>
-              <p class="card-text">{{ p.content }}</p>
+              {% if p.hook_text %}
+              <h5 class="text-muted">{{ p.hook_text }}</h5>
+              {% endif %}
+              <!-- truncatewords 문자열 제한 추가 -->
+              <p class="card-text">{{ p.content | truncatewords:45 }}</p>
               <a class="btn btn-primary" href="{{ p.get_absolute_url }}"
                 >Read more &rarr;</a
               >
