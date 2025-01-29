@@ -5,38 +5,38 @@
 <!-- Blog post start -->
 
 <div class="card mb-4">
-  <!-- if image in files come for entry picture  -->
-  {% if p.head_image %}
-  <img
-    class="card-img-top"
-    src="{{ p.head_image.url }}"
-    alt="{{ p }} head image"
-  />
+    <!-- if image in files come for entry picture  -->
+    {% if p.head_image %}
+    <img
+        class="card-img-top"
+        src="{{ p.head_image.url }}"
+        alt="{{ p }} head image"
+    />
 
-  <!-- if none image in files, bring come from lorem picture  -->
-  {% else %}
-  <img
-    class="card-img-top"
-    src="https://picsum.photos/seed/{{ p.pk }}/800/200"
-    alt="random_image"
-  />
-  {% endif %}
-
-  <div class="card-body">
-    <h2 class="card-title">{{ p.title }}</h2>
-    {% if p.hook_text %}
-    <h5 class="text-muted">{{ p.hook_text }}</h5>
+    <!-- if none image in files, bring come from lorem picture  -->
+    {% else %}
+    <img
+        class="card-img-top"
+        src="https://picsum.photos/seed/{{ p.pk }}/800/200"
+        alt="random_image"
+    />
     {% endif %}
-    <!-- truncatewords 문자열 제한 추가 -->
-    <p class="card-text">{{ p.content | truncatewords:45 }}</p>
-    <a class="btn btn-primary" href="{{ p.get_absolute_url }}"
-      >Read more &rarr;</a
-    >
-  </div>
-  <div class="card-footer text-muted">
-    Posted on {{ p.created_at }} by
-    <a href="#">작성자명 개발 예정</a>
-  </div>
+
+    <div class="card-body">
+        <h2 class="card-title">{{ p.title }}</h2>
+        {% if p.hook_text %}
+        <h5 class="text-muted">{{ p.hook_text }}</h5>
+        {% endif %}
+        <!-- truncatewords 문자열 제한 추가 -->
+        <p class="card-text">{{ p.content | truncatewords:45 }}</p>
+        <a class="btn btn-primary" href="{{ p.get_absolute_url }}"
+            >Read more &rarr;</a
+        >
+    </div>
+    <div class="card-footer text-muted">
+        Posted on {{ p.created_at }} by
+        <a href="#">{{ p.author | upper }}</a>
+    </div>
 </div>
 {% endfor %} {% else %}
 <h3>아직 게시물이 없습니다.</h3>
@@ -48,30 +48,32 @@
 <!-- Pagination start-->
 
 <nav aria-label="Pagination">
-  <hr class="my-0" />
-  <ul class="pagination justify-content-center my-4">
-    <li class="page-item disabled">
-      <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Newer</a>
-    </li>
-    <li class="page-item active" aria-current="page">
-      <a class="page-link" href="#!">1</a>
-    </li>
-    <li class="page-item">
-      <a class="page-link" href="#!">2</a>
-    </li>
-    <li class="page-item">
-      <a class="page-link" href="#!">3</a>
-    </li>
-    <li class="page-item disabled">
-      <a class="page-link" href="#!">...</a>
-    </li>
-    <li class="page-item">
-      <a class="page-link" href="#!">15</a>
-    </li>
-    <li class="page-item">
-      <a class="page-link" href="#!">Older</a>
-    </li>
-  </ul>
+    <hr class="my-0" />
+    <ul class="pagination justify-content-center my-4">
+        <li class="page-item disabled">
+            <a class="page-link" href="#" tabindex="-1" aria-disabled="true"
+                >Newer</a
+            >
+        </li>
+        <li class="page-item active" aria-current="page">
+            <a class="page-link" href="#!">1</a>
+        </li>
+        <li class="page-item">
+            <a class="page-link" href="#!">2</a>
+        </li>
+        <li class="page-item">
+            <a class="page-link" href="#!">3</a>
+        </li>
+        <li class="page-item disabled">
+            <a class="page-link" href="#!">...</a>
+        </li>
+        <li class="page-item">
+            <a class="page-link" href="#!">15</a>
+        </li>
+        <li class="page-item">
+            <a class="page-link" href="#!">Older</a>
+        </li>
+    </ul>
 </nav>
 <!-- Pagination end -->
 {% endblock %}
