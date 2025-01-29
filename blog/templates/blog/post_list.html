@@ -30,11 +30,11 @@
     {% endif %}
 
     <div class="card-body">
-        {% if p.category and category != "미분류" %}
-        <span class="badge badge-secondary float-right"
-            >{{ p.category }} - {{ category.post_set.count|default:0 }}</span
-        >
-        {% else %} 0 {% endif %}
+        {% if p.category %}
+        <span class="badge badge-secondary float-right">{{ p.category }}</span>
+        {% else %}
+        <span class="badge badge-secondary float-right">미분류</span>
+        {% endif %}
 
         <h2 class="card-title">{{ p.title }}</h2>
         {% if p.hook_text %}

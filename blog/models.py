@@ -47,7 +47,7 @@ class Post(models.Model):
     # CASCADE는 연결되어있는 값도 같이 삭제 해준다는 뜻
     # SET_NULL은 해당 값을 삭제해도, 해당 pk 값은 공백으로 두되, 나머지 데이터는 살려두는 것
     # blank=True를 해줘야 카테고리 미 추가시 오류가 뜨지 않는다.
-    author = models.ForeignKey(User, null=True, blank=True, on_delete=models.SET_NULL)
+    author = models.ForeignKey(User, null=True, on_delete=models.SET_NULL)
     category = models.ForeignKey(Category, null=True, blank=True, on_delete=models.SET_NULL)
     tags = models.ManyToManyField(Tag, blank=True)
 

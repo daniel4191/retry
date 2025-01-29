@@ -11,7 +11,7 @@ class PostList(ListView):
         context = super(PostList, self).get_context_data()
         context["categories"] = Category.objects.all()
         context["no_category_post_count"] = Post.objects.filter(category=None).count()
-        context["category"] = None
+        # context["category"] = None
         return context
         
 
@@ -51,7 +51,7 @@ def single_post_page(request, pk):
 
 def category_page(request, slug):
     if slug == "no_category":
-        # category = "미분류"
+        category = "미분류"
         post_list = Post.objects.filter(category=None)
     else:
         category = Category.objects.get(slug=slug)
