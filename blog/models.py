@@ -20,6 +20,17 @@ class Category(models.Model):
         verbose_name_plural = "categories"
 
 
+class Tag(models.Model):
+    name = models.CharField(max_length=50)
+    slug = models.SlugField(max_length=200, unique=True, allow_unicode=True)
+
+    def __str__(self):
+        return self.name
+
+    def get_absolute_url(self):
+        return f"/blog/tag/{self.slug}/"
+    
+
 class Post(models.Model):
     title = models.CharField(max_length=30)
     # 후킹해주는 메세지 100글자 한도로 노출
@@ -37,8 +48,8 @@ class Post(models.Model):
     # SET_NULL은 해당 값을 삭제해도, 해당 pk 값은 공백으로 두되, 나머지 데이터는 살려두는 것
     # blank=True를 해줘야 카테고리 미 추가시 오류가 뜨지 않는다.
     author = models.ForeignKey(User, null=True, blank=True, on_delete = models.SET_NULL)
-    
     category = models.ForeignKey(Category, null=True, on_delete=models.SET_NULL)
+    tags = models.ManyToManyField(Tag, blank=True)
 
     # 이걸로써, 관리자 단에서 내용을 보게 되면 작성된 텍스트로 표시된다.
     def __str__(self):
@@ -53,3 +64,4 @@ class Post(models.Model):
     def get_file_ext(self):
         return self.get_file_name().split(".")[-1]
     
+

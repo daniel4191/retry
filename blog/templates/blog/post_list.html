@@ -39,6 +39,20 @@
         {% endif %}
         <!-- truncatewords 문자열 제한 추가 -->
         <p class="card-text">{{ p.content | truncatewords:45 }}</p>
+
+        <!-- tags 추가 -->
+        {% if p.tags.exists %}
+        <i class="fa-solid fa-tags"></i>
+        {% for tag in p.tags.iterator %}
+        <a href="{{ tag.get_absolute_url }}"
+            ><span class="badge badge-pill badge-light">{{ tag }}</span></a
+        >
+        {% endfor %}
+        <br />
+        <br />
+        {% endif %}
+        <!-- tags end -->
+
         <a class="btn btn-primary" href="{{ p.get_absolute_url }}"
             >Read more &rarr;</a
         >
