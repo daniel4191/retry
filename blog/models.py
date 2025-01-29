@@ -1,4 +1,6 @@
 from django.db import models
+from django.contrib.auth.models import User
+
 import os
 
 # Create your models here.
@@ -15,11 +17,11 @@ class Post(models.Model):
 
     created_at = models.DateTimeField(auto_now=True)
     updated_at = models.DateTimeField(auto_now=True)
-    # author - 추후 작성 예정
+    author = models.ForeignKey(User, on_delete = models.CASCADE)
 
     # 이걸로써, 관리자 단에서 내용을 보게 되면 작성된 텍스트로 표시된다.
     def __str__(self):
-        return f"[{self.pk}] {self.title}"
+        return f"[{self.pk}]{self.title} :: {self.author}"
 
     def get_absolute_url(self):
         return f"/blog/{self.pk}/"
