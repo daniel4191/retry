@@ -11,9 +11,13 @@ class Category(models.Model):
     def __str__(self):
         return self.name
 
+    def get_absolute_url(self):
+        return f"/blog/category/{self.slug}/"
+    
+
     # admin 단에서의 이름을 설정
     class Meta:
-        verbose_name_plural = "Categories"
+        verbose_name_plural = "categories"
 
 
 class Post(models.Model):
