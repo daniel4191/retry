@@ -31,10 +31,18 @@
 
     <div class="card-body">
         {% if p.category %}
-        <span class="badge badge-secondary float-right">{{ p.category }}</span>
+        <span class="badge badge-success float-right">{{ p.category }}</span>
         {% else %}
-        <span class="badge badge-secondary float-right">미분류</span>
+        <span class="badge badge-success float-right">미분류</span>
         {% endif %}
+
+        <!-- 수정코드 시작-->
+        {% comment %} {% for category in categories %}
+        <li>
+            <a href="{{ category.get_absolute_url }}">{{ category.name }}</a>
+        </li>
+        {% endfor %} {% endcomment %}
+        <!-- 수정코드 종료  -->
 
         <h2 class="card-title">{{ p.title }}</h2>
         {% if p.hook_text %}
