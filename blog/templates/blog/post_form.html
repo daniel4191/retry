@@ -4,17 +4,14 @@ Blog{% endblock %} {% block main_area %}
 <hr />
 
 <form method="post" enctype="multipart/form-data">
-    {% csrf_token %} {{form}}
-    <div id="div_id_tags_tar">
-        <label for="id_tags_str">Tags:</label>
-        <input
-            type="text"
-            name="tags_str"
-            id="id_tags_str"
-            class="textinput textInput form-control"
-        />
-    </div>
-    <br />
+    {% csrf_token %}
+    <table>
+        {{form}}
+    </table>
+    <tr>
+        <th><label for="id_tags_str">Tags:</label></th>
+        <td><input type="text" name="tags_str" id="id_tags_str" /></td>
+    </tr>
 
     <button type="submit" class="btn btn-primary float-right">Submit</button>
 </form>
