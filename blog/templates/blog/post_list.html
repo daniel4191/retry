@@ -1,4 +1,17 @@
 {% extends "blog/base.html" %} {% block main_area %}
+
+<!-- "new post button" once you loged in start -->
+{% if user.is_authenticated %} {% if user.is_superuser or user.is_staff %}
+<a
+    href="/blog/create_post/"
+    role="button"
+    class="btn btn-info btn-sm float-right"
+>
+    <i class="fa-solid fa-pen-to-square"></i>&nbsp;&nbsp;New Post
+</a>
+{% endif %} {% endif %}
+<!-- "new post button" once you loged in end -->
+
 <h1>
     Blog {% if category %}<span class="badge badge-secondary"
         >{{ category }}</span
