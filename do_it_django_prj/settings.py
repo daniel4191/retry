@@ -150,7 +150,7 @@ AUTHENTICATION_BACKENDS = {
     "allauth.account.auth_backends.AuthenticationBackend"
 }
 
-SITE_ID = 1
+SITE_ID = 2  # SITE_ID 1일때는 provider_login_url를 못 읽는 증상이 있었다.
 
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_EMAIL_VERIFICATION = "none"
