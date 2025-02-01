@@ -1,7 +1,8 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.views.generic import ListView, DetailView, CreateView, UpdateView
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from .models import Post, Category, Tag
+from .forms import CommentForm
 from django.db.models import Count
 from django.core.exceptions import PermissionDenied
 from django.utils.text import slugify
@@ -26,9 +27,10 @@ class PostDetail(DetailView):
     model = Post
 
     def get_context_data(self, **kwargs):
-        context = super(PostDetail, self).get_context_data()
+        context = super(PostDetail, self).get_context_data(**kwargs)
         context["categories"] = Category.objects.annotate(post_count=Count('post'))
         context["no_category_post_count"] = Post.objects.filter(category=None).count()
+        context["comment_form"] = CommentForm()
         return context
 
 class PostCreate(LoginRequiredMixin, UserPassesTestMixin, CreateView):
@@ -99,10 +101,13 @@ class PostUpdate(LoginRequiredMixin, UpdateView):
 
             for t in tags_list:
                 t = t.strip()
-                tag, is_tag_created = Tag.objects.get_or_create(name=t)
-                if is_tag_created:
-                    tag.slug = slugify(t, allow_unicode=True)
-                    tag.save()
+                tag, is_tag_created = Tag.objects.get_or_create(
+                    name=t,
+                    defaults={"slug": slugify(t, allow_unicode=True)} # 추가
+                    )
+                # if is_tag_created:
+                #     tag.slug = slugify(t, allow_unicode=True)
+                #     tag.save()
                 self.object.tags.add(tag)
 
         return response
@@ -167,3 +172,21 @@ def tag_page(request, slug):
             "no_category_post_count" : Post.objects.filter(category=None).count()
         }
     )
+
+def new_comment(request, pk):
+    if request.user.is_authenticated:
+        post = get_object_or_404(Post, pk=pk)
+
+        if request.method == "POST":
+            comment_form = CommentForm(request.POST)
+            if comment_form.is_valid():
+                comment = comment_form.save(commit=False)
+                comment.post = post
+                comment.author = request.user
+                comment.save()
+                return redirect(post.get_absolute_url())
+            else:
+                return redirect(post.get_absolute_url())
+
+        else:
+            raise PermissionDenied

@@ -31,6 +31,11 @@ class Tag(models.Model):
 
     def get_absolute_url(self):
         return f"/blog/tag/{self.slug}/"
+
+    def save(self, *args, **kwargs):
+        if not self.slug:  # 슬러그가 없는 경우에만 생성
+            self.slug = slugify(self.name, allow_unicode=True)
+        super().save(*args, **kwargs)
     
 
 class Post(models.Model):
