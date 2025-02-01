@@ -54,7 +54,7 @@
     </figure>
 
     <!-- Post content-->
-    <p>{{ post.content }}</p>
+    <p>{{ post.get_content_markdown | safe }}</p> <!-- get_content_markdown | safe로 content필드에 마크다운에 따라 저장된 텍스트를 html로 변환후 리턴 -->
 
     <!-- tags 추가 -->
     {% if post.tags.exists %}

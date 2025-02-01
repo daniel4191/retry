@@ -41,8 +41,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     "django_extensions",
-    'crispy_forms',
-    "crispy_bootstrap4",
+    'crispy_forms', # 양식 bootsrap 적용
+    "crispy_bootstrap4", # 양식 bootsrap 적용
+    "markdownx", # 들여쓰기등 텍스트 작성 자동 교정
 
     "blog",
     "single_pages"
