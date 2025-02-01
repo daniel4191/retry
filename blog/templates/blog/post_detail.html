@@ -119,9 +119,20 @@
         <div class="media mb-4" id="comment-{{ comment.pk }}">
             <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">
             <div class="media-body">
+                <!-- 댓글 수정기능 시작 -->
+                {% if user.is_authenticated and comment.author == user %}
+                    <a role="button" href="/blog/update_comment/{{ comment.pk }}/" class="btn btn-sm btn-info float-right">Edit</a>
+                {% endif %}
+                <!-- 댓글 수정기능 종료 -->
+
                 <h5 class="mt-0">{{ comment.author.username }} &nbsp;&nbsp;<small class="text-muted">{{ comment.created_at }}</small>
                 </h5>
                 <p>{{ comment.content | linebreaks }}</p>
+                <!-- modifying start -->
+                {% if comment.create_at != comment.modified_at %}
+                    <p class="text-muted float-right"><small>수정됨: {{ comment.modified_at }}</small></p>
+                {% endif %}
+                <!-- modifying end -->
             </div>
         </div>
         {% endfor %}
