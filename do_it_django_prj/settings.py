@@ -28,7 +28,7 @@ SECRET_KEY = 'j^t3axb+!3q8fqsdv%f+e&7ab$bfsv@!lx-lv_bnuopi-guiv='
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS =  ['127.0.0.1', 'localhost']
 
 
 # Application definition
@@ -44,6 +44,11 @@ INSTALLED_APPS = [
     'crispy_forms', # 양식 bootsrap 적용
     "crispy_bootstrap4", # 양식 bootsrap 적용
     "markdownx", # 들여쓰기등 텍스트 작성 자동 교정
+    "django.contrib.sites",
+    "allauth",
+    "allauth.account",
+    "allauth.socialaccount",
+    "allauth.socialaccount.providers.google",
 
     "blog",
     "single_pages"
@@ -57,6 +62,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    "allauth.account.middleware.AccountMiddleware"
 ]
 
 ROOT_URLCONF = 'do_it_django_prj.urls'
@@ -138,3 +144,15 @@ MEDIA_ROOT = os.path.join(BASE_DIR, "_media")
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 CRISPY_TEMPLATE_PACK = "bootstrap4"
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap4"  # 이 줄 추가
+
+AUTHENTICATION_BACKENDS = {
+    "django.contrib.auth.backends.ModelBackend",
+    "allauth.account.auth_backends.AuthenticationBackend"
+}
+
+SITE_ID = 1
+
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_EMAIL_VERIFICATION = "none"
+
+LOGIN_REDIRECT_URL = "/blog/"

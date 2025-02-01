@@ -1,3 +1,5 @@
+{% load socialaccount %}
+
 <!-- start of bootstrap4 -->
 <nav class="navbar navbar-expand-lg text-white bg-white">
     <nav class="container">
@@ -49,7 +51,18 @@
             </ul>
 
             <!-- login button zone start-->
+            <!-- 로그인 하게 되면 우측 상단에 되어있는 사람의 정보로 나오게 된다. -->
             <ul class="navbar-nav ml-auto">
+                {% if user.is_authenticated %}
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        {{ user.username }}
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        <a href="/accounts/logout" class="dropdown-item">Log Out</a>
+                    </div>
+                </li>
+                {% else %}
                 <li class="nav-item">
                     <a
                         href="#"
@@ -59,6 +72,7 @@
                         >Log In</a
                     >
                 </li>
+                {% endif %}
             </ul>
             <!-- login button zone end-->
         </div>
@@ -96,29 +110,22 @@
                 <div class="row">
                     <div class="col-md-6">
                         <!--  btn-block btn-sm가 버튼 정렬 기능을 한다. -->
-                        <button
-                            type="button"
+                        <a role="button" class="btn btn-outline-primary btn-block btn-sm" href="{% provider_login_url "google" %}">
+                            <i class="fa-brands fa-google"></i>&nbsp&nbsp Log In with google
+                        </a>
+                        <a
+                            role="button"
                             class="btn btn-outline-primary btn-block btn-sm"
+                            href="/accounts/login/"
                         >
-                            <i class="fa-brands fa-google"></i>&nbsp&nbsp Log In
-                            with google
-                        </button>
-                        <button
-                            type="button"
-                            class="btn btn-outline-primary btn-block btn-sm"
-                        >
-                            <i class="fa-regular fa-envelope"></i>&nbsp&nbsp Log
-                            In with E-mail
-                        </button>
+                            <i class="fa-regular fa-envelope"></i>&nbsp&nbsp LogIn with Username
+                        </a>
                     </div>
                     <div class="col-md-6">
-                        <button
-                            type="button"
-                            class="btn btn-outline-success btn-block btn-sm"
-                        >
+                        <a role="button" class="btn btn-outline-success btn-block btn-sm" href="/accounts/signup/">
                             <i class="fa-regular fa-envelope-open"></i
                             >&nbsp&nbsp Sign Up with E-mail
-                        </button>
+                        </a>
                     </div>
                 </div>
             </div>
