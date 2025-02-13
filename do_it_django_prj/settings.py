@@ -28,7 +28,7 @@ SECRET_KEY = 'j^t3axb+!3q8fqsdv%f+e&7ab$bfsv@!lx-lv_bnuopi-guiv='
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS =  ['127.0.0.1', 'localhost']
+ALLOWED_HOSTS =  ['127.0.0.1', 'localhost',"port-0-retry-m73egtk3a1c28d6e.sel4.cloudtype.app"]
 
 
 # Application definition
