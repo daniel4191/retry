@@ -1,0 +1,11 @@
+name: do_it_django_prj
+services:
+    - name: web
+      env:
+          - name: DJANGO_SETTINGS_MODULE
+            value: 'do_it_django_prj.settings'
+      build:
+          commands:
+              - python manage.py migrate # 배포 시 DB 마이그레이션 실행
+      run:
+          command: gunicorn do_it_django_prj.wsgi:application --bind 0.0.0.0:8000

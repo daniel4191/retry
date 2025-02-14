@@ -8,9 +8,14 @@ https://docs.djangoproject.com/en/3.0/howto/deployment/wsgi/
 """
 
 import os
-
+import django
 from django.core.wsgi import get_wsgi_application
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'do_it_django_prj.settings')
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'your_project.settings')
+
+django.setup()
+
+from django.core.management import call_command
+call_command('migrate')  # 마이그레이션 자동 수행
 
 application = get_wsgi_application()
