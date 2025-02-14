@@ -90,16 +90,23 @@ WSGI_APPLICATION = 'do_it_django_prj.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': os.environ.get('daniel_db'),
+#         'USER': os.environ.get('daniel'),
+#         'PASSWORD': os.environ.get('logisWkd1'),
+#         'HOST': os.environ.get('daniel_db'),
+#         'PORT': os.environ.get('8000', '5432'),
+#     }
+# }
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.environ.get('daniel_db'),
-        'USER': os.environ.get('daniel'),
-        'PASSWORD': os.environ.get('logisWkd1'),
-        'HOST': os.environ.get('daniel_db'),
-        'PORT': os.environ.get('8000', '5432'),
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
-}
+  }
 
 
 # Password validation
