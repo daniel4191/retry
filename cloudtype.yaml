@@ -1,11 +1,18 @@
-name: do_it_django_prj
-services:
-    - name: web
-      env:
-          - name: DJANGO_SETTINGS_MODULE
-            value: 'do_it_django_prj.settings'
-      build:
-          commands:
-              - python manage.py migrate # 배포 시 DB 마이그레이션 실행
-      run:
-          command: gunicorn do_it_django_prj.wsgi:application --bind 0.0.0.0:8000
+name: retry
+app: python@3.9
+resources:
+    spot: true
+options:
+    env:
+        - name: DJANGO_SECRET
+          value: 5xeuu%71e@wu=#f@^xs6fp0d$adc@c7dvk@8-gfb%0r@ynpe*-
+    ports: 8000
+    buildenv: []
+    start: >
+        python3 manage.py migrate &&
+        python3 manage.py runserver 0:8000
+context:
+    git:
+        url: https://github.com/daniel4191/retry.git
+        branch: main
+    preset: python-django
